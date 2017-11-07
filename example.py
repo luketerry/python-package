@@ -2,7 +2,7 @@
 Example of using mypackage
 """
 
-import mypackage as mp
+import mytestpackage as mp
 
 s1 = mp.saysample1()
 print('s1 is', s1)

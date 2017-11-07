@@ -6,7 +6,7 @@ Tests for group 1
 import sys
 sys.path.append('.')
 
-import mypackage as mp
+import mytestpackage as mp
 
 def test_sample1():
     """test sample 1"""

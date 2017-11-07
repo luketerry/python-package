@@ -4,89 +4,69 @@ This guide discusses creating a Python package, providing documentation,
 implementing tests, and deploying the package to the [Python Package Index
 (PyPI)](https://pypi.org) and Anaconda Cloud.
 
-Contents:  
-[Project Structure](#project-structure) \ [Python Package](#python-package) \
-[Python Package Index](#python-package-index-(pypi)) \ [Conda](#conda)
-
 ## Project Structure
 
 Before developing your Python package, create an organized project folder to
 contain the package and related files. The folder structure shown below
 provides an example template for your project and assumes it will be hosted on
-GitHub. Summaries of the folders and files in this project template are given
-below.
+GitHub. Summaries of the folders and files in this project are given below.
 
 ```
-pypackage/
+python-package/
 |- docs/
-|- mypackage/
+|- mytestpackage/
 |- tests/
 |- CONTRIBUTING.md
 |- LICENSE
-|- MANIFEST.in
 |- README.md
 |- example.py
 |- setup.py
 ```
 
-**`docs/`** - Documentation for the package should be contained within the
-`docs/` folder. [MkDocs](http://www.mkdocs.org) is a great project
-documentation tool that uses Markdown files.
-[Sphinx](http://www.sphinx-doc.org/en/stable/) is another common documentation
-tool that uses Restructured text files.
+`docs/` - Documentation for the package should be contained within the `docs/`
+folder. [MkDocs](http://www.mkdocs.org) is a great project documentation tool
+that uses Markdown files. [Sphinx](http://www.sphinx-doc.org/en/stable/) is
+another common documentation tool that uses Restructured text files.
 
-**`mypackage/`** - The actual Python package is the `pypackage/` folder. See
-the [Python Package](#python-package) section below for more details about its
-contents.
+`mytestpackage/` - folder that contains the Python package. View the contents
+of this folder for more details on how to construct your package. Notice the
+use of the `__init__.py` files which inform Python to treat the directories as
+containing packages.
 
-**`tests/`** - Unit test files are contained in the `tests/` folder. The
+`tests/` - Unit test files are contained in the `tests/` folder. The
 [pytest](https://docs.pytest.org/en/latest/) framework is the preferred testing
 tool. The tests can be run from the terminal by entering the `pytest` command
 from within the root directory for the project.
 
-**`CONTRIBUTING.md`** - instructions for submitting code to the project's
+`CONTRIBUTING.md` - instructions for submitting code to the project's
 repository on GitHub.
 
-**`LICENSE`** - tells others how your code can be distributed. GitHub provides
+`LICENSE` - tells others how your code can be distributed. GitHub provides
 several options for license files.
 
-**`MANIFEST.in`** - specify additional package files that are not automatically
-included with the distribution.
-
-**`README.md`** - provides a description of the package and where to get more
+`README.md` - provides a description of the package and where to get more
 details.
 
-**`example.py`** - demonstrates importing the package and calling functions and
+`example.py` - demonstrates importing the package and calling functions and
 variables provided by the package.
 
-**`setup.py`** - critical file that provides configuration settings for your
+`setup.py` - critical file that provides configuration settings for your
 package. The contents of this file is based on the
 [setup.py](https://github.com/kennethreitz/setup.py) guide by Kenneth Reitz.
-
-## Python Package
-
-An example package structure is shown below.
-
-```
-pypackage/
-|- __init__.py
-|- __version__.py
-|- group1/
-|  |- sample1.py
-|  |- sample2.py
-|- group2/
-|  |- sample3.py 
-|- mod1.py
-```
-
-The `__init__.py` file tells Python to treat the folder as a package.
 
 ## Distributing with PyPI
 
 The [Python Package Index (PyPI)](https://pypi.org) is a repository of software
 for the Python programming language. Package authors use PyPI to distribute
-their software to the Python community. Before uploading to PyPI, you need to
-`pip install twine` and create an account on PyPI.
+their software to the Python community.
+
+Before uploading to PyPI, you need to
+`pip install twine` and create an account on PyPI. Also, make sure your package
+has a unique name that isn't already taken on PyPI.
+
+Fill out the fields in `setup.py` with the appropriate information. Then use
+the `python setup.py upload` command to send your package files to PyPI. Before
+the upload is complete, you must provide your PyPI username and password.
 
 ## Distributing with Conda
 
