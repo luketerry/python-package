@@ -1,8 +1,9 @@
 # :package: Python Package
 
-This guide discusses creating a Python package, providing documentation,
-implementing tests, and deploying the package to the [Python Package Index
-(PyPI)](https://pypi.org) and Anaconda Cloud.
+This is an example project for distributing a Python package to the [Python
+Package Index (PyPI)](https://pypi.org) and [Anaconda
+Cloud](https://anaconda.org). Suggestions for documenting the package and
+running unit tests are also provided.
 
 ## Project Structure
 
@@ -33,7 +34,7 @@ of this folder for more details on how to construct your package. Notice the
 use of the `__init__.py` files which inform Python to treat the directories as
 containing packages.
 
-`tests/` - Unit test files are contained in the `tests/` folder. The
+`tests/` - folder containing unit test files. The
 [pytest](https://docs.pytest.org/en/latest/) framework is the preferred testing
 tool. The tests can be run from the terminal by entering the `pytest` command
 from within the root directory for the project.
@@ -58,17 +59,40 @@ package. The contents of this file is based on the
 
 The [Python Package Index (PyPI)](https://pypi.org) is a repository of software
 for the Python programming language. Package authors use PyPI to distribute
-their software to the Python community.
+their software to the Python community. Use the steps below to upload your
+package to PyPI. Also, make sure your package has a unique name that isn't
+already taken by another developer.
 
-Before uploading to PyPI, you need to
-`pip install twine` and create an account on PyPI. Also, make sure your package
-has a unique name that isn't already taken on PyPI.
+### Step 1
 
-Fill out the fields in `setup.py` with the appropriate information. Then use
-the `python setup.py upload` command to send your package files to PyPI. Before
-the upload is complete, you must provide your PyPI username and password.
+Create an account on PyPI then install the twine tool to interact with the
+package index from the command line.
 
-## Distributing with Conda
+```
+pip install twine
+```
+
+### Step 2
+
+Fill out the fields in `setup.py` with the appropriate information. See the
+example setup file provided in this project for more details.
+
+### Step 3
+
+Upload your Python package to PyPI using the setup file. You will be asked for
+the username and password you created earlier.
+
+```
+python setup.py upload
+```
+
+### Step 4
+
+Wait for your package to get indexed in PyPI which can take up to 30 minutes.
+You should eventually be able to `pip search` and `pip install` your package
+once it is discoverable in the online system.
+
+## Distributing with Anaconda Cloud
 
 Here.
 
