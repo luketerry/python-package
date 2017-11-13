@@ -15,10 +15,11 @@ from setuptools import find_packages, setup, Command
 # Package meta-data.
 NAME = 'mytestpackage'
 DESCRIPTION = 'A short description of the python package.'
+LONGDESCRIPTION = 'See the README.md file on GitHub for more information.'
 URL = 'https://github.com/user/mytestpackage'
 EMAIL = 'me@example.com'
 AUTHOR = 'Homer Simpson'
-VERSION = '1.2.4'
+VERSION = '1.2.5'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
@@ -31,11 +32,10 @@ REQUIRED = [
 # Except, perhaps the License and Trove Classifiers!
 # If you do change the License, remember to change the Trove Classifier for that!
 
-here = os.path.abspath(os.path.dirname(__file__))
+here = os.path.abspath('pypi/')
 
 class UploadCommand(Command):
     """Support setup.py upload."""
-
     description = 'Build and publish the package.'
     user_options = []
 
@@ -55,15 +55,15 @@ class UploadCommand(Command):
     def run(self):
         """Remove previous builds."""
         try:
-            self.status('Removing previous builds…')
+            self.status('Removing previous builds...')
             rmtree(os.path.join(here, 'dist'))
         except OSError:
             pass
 
-        self.status('Building Source and Wheel (universal) distribution…')
-        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+        self.status('Building Source and Wheel distribution...')
+        os.system('{0} setup.py sdist bdist_wheel'.format(sys.executable))
 
-        self.status('Uploading the package to PyPi via Twine…')
+        self.status('Uploading the package to PyPI via Twine...')
         os.system('twine upload dist/*')
 
         sys.exit()
@@ -74,6 +74,7 @@ setup(
     name=NAME,
     version=VERSION,
     description=DESCRIPTION,
+    long_description=LONGDESCRIPTION,
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,
@@ -85,7 +86,6 @@ setup(
         # Trove classifiers
         # Full list at https://pypi.python.org/pypi?%3Aaction=list_classifiers
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
