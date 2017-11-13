@@ -17,6 +17,7 @@ python-package/
 |- mytestpackage/
 |- recipe/
 |- tests/
+|- .gitignore
 |- CONTRIBUTING.md
 |- LICENSE
 |- README.md
@@ -25,41 +26,48 @@ python-package/
 |- setup.py
 ```
 
-`docs/` - place your documentation for the package in the `docs/` folder.
+Documentation for the package should be placed in the `docs/` folder.
 [MkDocs](http://www.mkdocs.org) is a great project documentation tool that uses
 Markdown files. [Sphinx](http://www.sphinx-doc.org/en/stable/) is another
 common documentation tool that uses Restructured text files.
 
-`mytestpackage/` - folder that contains the Python package. View the contents
-of this folder for more details on how to construct your package. Notice the
-use of the `__init__.py` files which inform Python to treat the directories as
-containing packages.
+The Python package in this example project is named `mytestpackage/`. View the
+contents of this folder for more details on how to construct your package.
+Notice the use of the `__init__.py` files which inform Python to treat the
+directories as containing packages.
 
-`recipe/` - contains files for the Conda build process.
+Files required to build the Conda version of the package are contained in the
+`recipe/` folder.
 
-`tests/` - folder containing unit test files. The
+Unit tests are contained in the the `tests/` folder. The
 [pytest](https://docs.pytest.org/en/latest/) framework is the preferred testing
-tool. The tests can be run from the terminal by entering the `pytest` command
-from within the root directory for the project.
+tool and is used in this example project. The tests can be run from the
+terminal by entering the `pytest` command from within the root directory for
+the project.
 
-`CONTRIBUTING.md` - instructions for submitting code to the project's
-repository on GitHub.
+Use a `.gitignore` file to exclude any unwanted files and folders from version
+control. The example in this project was generated at
+[gitignore.io](https://www.gitignore.io). 
 
-`LICENSE` - tells others how your code can be distributed. GitHub provides
-several options for license files.
+Instructions for submitting code to the project's repository on GitHub are
+provided in the `CONTRIBUTING.md` file.
 
-`README.md` - provides a description of the package and where to get more
-details.
+The `LICENSE` file tells others how your code can be used in other projects.
+GitHub provides several options for license files.
 
-`clean.sh` - a Bash script to clean the project folder by removing PyPI and
-Conda files created from the build process.
+Use a `README.md` file to provide a description of the package and where to get
+more information.
 
-`example.py` - demonstrates importing the package and calling functions and
-variables provided by the package.
+The `clean.sh` is a Bash script to clean the project folder by removing PyPI
+and Conda files created from the build process.
 
-`setup.py` - critical file that provides configuration settings for your
-package. The contents of this file is based on the
-[setup.py](https://github.com/kennethreitz/setup.py) guide by Kenneth Reitz.
+An example of importing the `mytestpackage` and utilizing its functions is
+provided in the `example.py` file.
+
+The `setup.py` is a critical file that provides configuration settings for your
+package and is required to upload to PyPI. The contents of this file is based
+on the [setup.py](https://github.com/kennethreitz/setup.py) guide by Kenneth
+Reitz.
 
 ## Distributing with PyPI
 
@@ -102,7 +110,9 @@ once it is discoverable in the online system.
 
 [Conda](https://conda.io/docs/index.html) is an open source package management
 system and environment management system that runs on Windows, macOS and Linux.
-It is part of the Anaconda distribution of Python.
+Conda is used to create and upload Python packages to [Anaconda
+Cloud](https://anaconda.org) which is a hosting service for the Anaconda
+distribution of Python.
 
 ### Step 1
 
@@ -112,10 +122,12 @@ Cloud](https://anaconda.org).
 
 ### Step 2
 
-Install the conda build tool.
+Install the conda build tool (for building your package) and the client tool
+(for uploading your package to Anaconda Cloud).
 
 ```
 conda install conda-build
+conda install anaconda-client
 ```
 
 ### Step 3
@@ -132,20 +144,11 @@ conda package.
 conda-build --output-folder . recipe
 ```
 
-### Step 6
-
-Before uploading to Anaconda Cloud, install the client with
-
-```
-conda install anaconda-client
-```
-
-then login to your account with `anaconda login`.
-
-### Step 7
+### Step 5
 
 Finally, upload your conda package (located in the `noarch/` folder) to
-Anaconda.org with the command shown below.
+Anaconda.org with the command shown below. You may need to login in to your
+account with `anaconda login` before you can complete the upload process.
 
 ```
 anaconda upload noarch/mytestpackage-1.2.5-pyh914d13a_0.tar.bz2
@@ -153,8 +156,9 @@ anaconda upload noarch/mytestpackage-1.2.5-pyh914d13a_0.tar.bz2
 
 ## Further Reading
 
-To learn more about creating and distributing Python packages, view the
+To learn more about creating and distributing Python packages, read the
 following projects and articles:
+
 - [setup.py](https://github.com/kennethreitz/setup.py) from Kenneth Reitz
 - [samplemod](https://github.com/kennethreitz/samplemod) from Kenneth Reitz
 - [sampleproject](https://github.com/pypa/sampleproject) from PyPA
